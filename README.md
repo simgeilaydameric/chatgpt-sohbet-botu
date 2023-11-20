@@ -2,6 +2,8 @@
 
 Bu Python kodu, PyQt5 kullanılarak basit bir GUI (Grafiksel Kullanıcı Arayüzü) içeren bir sohbet uygulamasını oluşturan bir programdır. Bu uygulama, OpenAI tarafından sağlanan GPT-3.5-turbo modelini kullanarak metin tabanlı sohbet yapma yeteneğine sahiptir.
 
+![ChatGPT-ile-Baglanti](https://github.com/simgeilaydameric/ChatGPT-ile-Baglanti/blob/main/chatbot.png)
+
 ## Kullanım
 
 1. Projeyi bilgisayarınıza klonlayın.
