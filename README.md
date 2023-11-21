@@ -2,13 +2,33 @@
 
 Bu Python kodu, PyQt5 kullanılarak basit bir GUI (Grafiksel Kullanıcı Arayüzü) içeren bir sohbet uygulamasını oluşturan bir programdır. Bu uygulama, OpenAI tarafından sağlanan GPT-3.5-turbo modelini kullanarak metin tabanlı sohbet yapma yeteneğine sahiptir.
 
-![ChatGPT-ile-Baglanti](https://github.com/simgeilaydameric/ChatGPT-ile-Baglanti/blob/main/chatbot.png)
+![ChatGPT-ile-Baglanti](./assets/chatbot.png)
 
 ## Kullanım
 
 1. Projeyi bilgisayarınıza klonlayın.
-2. OpenAI'den alınan API anahtarınızı `openai.api_key` değişkenine ekleyin.
-3. Uygulamayı çalıştırın.
+
+   ```bash
+   git clone https://github.com/simgeilaydameric/ChatGPT-ile-Baglanti.git
+   ```
+
+2. Gerekli kütüphaneleri kurun
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. OpenAI'den alınan API anahtarınızı `.env` adında bir dosya açıp ekleyin.
+
+   ```text
+   OPENAI_KEY = "OPENAI-API-KEY"
+   ```
+
+4. Uygulamayı çalıştırın.
+
+   ```bash
+   python GPTbaglantiKodlari.py
+   ```
 
 ## İşlevsellik
 
@@ -21,8 +41,7 @@ Bu Python kodu, PyQt5 kullanılarak basit bir GUI (Grafiksel Kullanıcı Arayüz
 
 ## API Anahtarı Alma
 
-API anahtarınızı almak için izleyebilirsiniz: [API-Key-Video](https://www.youtube.com/watch?v=aVog4J6nIAU) 
-
+API anahtarınızı almak için izleyebilirsiniz: [API-Key-Video](https://www.youtube.com/watch?v=aVog4J6nIAU)
 
 ## Önemli Notlar
 
