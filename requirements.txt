@@ -1,0 +1,3 @@
+openai==0.28
+pyqt5
+python-dotenv
