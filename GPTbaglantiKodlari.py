@@ -6,15 +6,26 @@ Created on Mon Sep 18 08:45:33 2023
 """
 import sys
 import openai
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QVBoxLayout, QWidget
+import logging
+from PyQt5.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QPushButton,
+    QTextEdit,
+    QVBoxLayout,
+    QWidget,
+)
+from dotenv import load_dotenv
+import os
 
-openai.api_key = "API-KEY" # API KEY'inizi yazın
+load_dotenv()
+
+openai.api_key = os.environ.get("OPENAI_KEY")
 
 
 class RichTextButtonApp(QMainWindow):
     def __init__(self):
         super().__init__()
-
         self.initUI()
 
     def initUI(self):
@@ -22,7 +33,7 @@ class RichTextButtonApp(QMainWindow):
         self.setWindowTitle("ChatGPT Chat Bot")
         self.setGeometry(100, 100, 800, 400)
 
-        # Merkez widget 
+        # Merkez widget
         central_widget = QWidget(self)
         self.setCentralWidget(central_widget)
 
@@ -35,6 +46,7 @@ class RichTextButtonApp(QMainWindow):
 
         # İkinci rich text kutusu (ChatGPT'nin cevabı için)
         self.output_text = QTextEdit(self)
+        self.output_text.setReadOnly(True)  # Set output text box as read-only
         layout.addWidget(self.output_text)
 
         # Buton ve tıklama olayı
@@ -45,15 +57,18 @@ class RichTextButtonApp(QMainWindow):
         central_widget.setLayout(layout)
 
     def GPT(self, text):
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": f"{text}"}
-            ]
-        )
-        l_text = response.choices[0].message['content']
-        return l_text
+        try:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": f"{text}"},
+                ],
+            )
+            return response.choices[0].message["content"]
+        except Exception as e:
+            logging.error(f"Error communicating with GPT: {e}")
+            return "An error occurred while processing your request."
 
     def chatWithGPT(self):
         # Kullanıcının girdisi
@@ -62,8 +77,9 @@ class RichTextButtonApp(QMainWindow):
         # GPT cevap
         response = self.GPT(user_input)
 
-        # Cevap için ikinci text 
+        # Cevap için ikinci text
         self.output_text.setPlainText(response)
+
 
 def main():
     app = QApplication(sys.argv)
@@ -71,6 +87,6 @@ def main():
     window.show()
     sys.exit(app.exec_())
 
+
 if __name__ == "__main__":
     main()
-
